@@ -7,7 +7,7 @@ moment.locale('es');
 var CronJob = require('cron').CronJob;
 new CronJob('1 10 * * * *', function() {
   lib.check();
-}, null, true, 'America/Mangua');
+}, null, true);
 
 http.createServer(function(req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
