@@ -12,10 +12,10 @@ http.createServer(function(req, res) {
   lib.getCache(function(error, cache) {
     var d = new Date();
     if (error) {
-      res.end(error + '\n' + d.toString());
+      res.end(error + '<br />' + d.toString());
     }
     else {
-      res.end(cache  + '\n' + d.toString());
+      res.end(cache  + '<br />' + d.toString());
     }
   });
 }).listen(process.env.PORT || 1337, null);
