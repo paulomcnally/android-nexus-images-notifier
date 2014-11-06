@@ -17,4 +17,4 @@ http.createServer(function(req, res) {
       res.end(cache);
     }
   });
-}).listen(process.env.VMC_APP_PORT || 1337, null);
+}).listen(process.env.PORT || 1337, null);
