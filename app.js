@@ -1,6 +1,8 @@
 var http = require('http');
+var moment = require('moment');
 var Lib = require('./lib');
 var lib = new Lib();
+moment.locale('es');
 
 var CronJob = require('cron').CronJob;
 new CronJob('1 10 * * * *', function() {
@@ -10,12 +12,14 @@ new CronJob('1 10 * * * *', function() {
 http.createServer(function(req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
   lib.getCache(function(error, cache) {
-    var d = new Date();
+    var output = '';
+    var date = moment().format('llll');
     if (error) {
-      res.end(error + '<br />' + d.toString());
+      output = error;
     }
     else {
-      res.end(cache  + '<br />' + d.toString());
+      output = cache
     }
+    res.end(output  + '<br />' + date);
   });
 }).listen(process.env.PORT || 1337, null);
