@@ -14,7 +14,7 @@ var Lib = function() {
   self.getHash = function(cb) {
     request(self.url, function(error, response, body) {
       if (error) {
-        cb(error, null);
+        cb(error.message, null);
       }
       else if (response.statusCode != 200) {
         cb(util.format('Invalid response from request %d', response.statusCode));
@@ -30,7 +30,7 @@ var Lib = function() {
   self.getCache = function(cb) {
     fs.readFile(self.logFile, 'utf8', function(error, data) {
       if (error) {
-        cb(error, null);
+        cb(error.message, null);
       }
       else {
         cb(null, data);
@@ -41,7 +41,7 @@ var Lib = function() {
   self.setCache = function(hash, cb) {
     fs.writeFile(self.logFile, hash, function(error) {
       if (error) {
-        cb(error, null);
+        cb(error.message, null);
       }
       else {
         cb(null, 'Done!');
